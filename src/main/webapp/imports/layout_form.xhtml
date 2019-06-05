@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" lang="pt-br">
+
+<head jsf:id="head">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="../resources/img/icon.png" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<!-- Meu CSS-->
+<link href="../resources/css/style_form.css" rel="stylesheet" />
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous" />
+
+<title>Cyber Aid</title>
+</head>
+
+<header>
+	<a class=""></a>
+	<div class=" text-center logo">
+		<a href="index.html" target="_blank"><img
+			src="../resources/img/logo1.png" alt="logo" title=""
+			class="img-responsive center-block" /></a>
+	</div>
+</header>
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<body>
+	<div class="content-wrapper">
+		<div class="container">
+
+			<ui:insert name="conteudo" />
+
+		</div>
+	</div>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="../resources/js/validator.min.js"></script>
+	<script src="../resources/js/jquery.mask.js"></script>
+	<script>
+
+    $(document).ready(function () {
+        $('#telefone-form').mask('(99) 99999-9999', {placeholder: "(99) 99999-9999"});
+        $('#cpf-form').mask('999.999.999-99', {placeholder: "000.000.000-00"});
+        $('#cnpj-form').mask('99.999.999/9999-99', {placeholder: "00.000.000/0000-00"});
+        $('#cep-form').mask('99999-999', {placeholder: "00000-000"});
+    });
+	
+	(function() {
+	  'use strict';
+	  window.addEventListener('load', function() {
+	    var form = document.getElementById('needs-validation');
+	    form.addEventListener('submit', function(event) {
+	      if (form.checkValidity() === false) {
+	        event.preventDefault();
+	        event.stopPropagation();
+	      }
+	      form.classList.add('was-validated');
+	    }, false);
+	  }, false);
+	})();
+	</script>
+	
+</body>
+
+</html>

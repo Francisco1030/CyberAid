@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" lang="pt-br">
+
+<ui:composition template="../imports/layout.xhtml">
+	<ui:define name="conteudo">
+
+		<h:messages id="msgs" infoClass="alert alert-primary" warnClass="alert alert-warning"
+				errorClass="alert alert-danger" fatalClass="alert alert-danger" />
+		
+		<f:metadata>
+			<f:viewParam name="id" value="#{doadorBean.doador.id}" />
+			
+		</f:metadata>
+		
+		<form jsf:id="form" id="needs-validation" novalidate="true">
+		
+			<input type="hidden" jsf:value="#{doadorBean.doador.id}" />
+			
+			<div class="box-body-default">
+				<div class="card">
+					<h5 class="card-header text-capitalize">Cadastro Doador</h5>
+					<div class="card-body">
+					
+						<div class="row">
+							<div class="col-md-6 col-sm-6">
+								<div class="form-group">
+									<label class="control-label" for="nome-form-doador"> 
+									<font color="red">*</font>Nome:
+									</label> 
+										<input type="text" name="nome-form-doador" jsf:value="#{doadorBean.doador.nome}" 
+												id="nome-form-doador" class="form-control" jsf:label="Nome" required="true">
+											<f:validateRequired />
+										</input>
+										<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+							<div class="col-md-6 col-sm-6">
+								<div class="form-group">
+									<label class="control-label" for="email-form-doador"> 
+									<font color="red">*</font>E-mail:</label> 
+									<input type="email" name="email-form-doador" id="email-form-doador" class="form-control" jsf:value="#{doadorBean.doador.email}"
+										pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" jsf:label="E-mail" required="true">
+								    	<f:validateRequired />
+								    </input>
+									<div class="invalid-feedback"> E-mail inválido.</div>
+								</div>
+							</div>
+						</div>
+					
+						<div class="row">
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="usuario-form-doador"> 
+									<font color="red">*</font>Usuário:
+									</label> 
+										<input type="text" name="usuario-form-doador" id="usuario-form-doador" class="form-control" jsf:value="#{doadorBean.doador.usuario}"
+										jsf:label="Usuário" required="true">
+											<f:validateRequired />
+										</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="senha-form-doador"> 
+									<font color="red">*</font>Senha:</label> 
+									<input type="password" name="senha-form-doador" id="senha-form-doador" class="form-control"  jsf:value="#{doadorBean.doador.senha}"
+									jsf:label="Senha" required="true">
+										<f:validateRequired />
+									</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="cpf_cnpj-form-doador"> 
+									<font color="red">*</font>CPF/CNPJ:&#160;&#160;
+										<h:selectOneRadio class="form-check form-check-inline" id="tipo-cpf" value="#{doadorBean.doador.tipoPessoa}" >
+											<f:selectItems class="form-check-input" var="p" value="#{doadorBean.tiposPessoas()}" itemLabel="#{p}" itemValue="#{p}" />
+											<f:ajax execute="tipo-cpf" render="mask-group"></f:ajax>
+										</h:selectOneRadio>		
+									</label> 
+									
+									<h:panelGroup id="mask-group">
+										<p:inputMask name="cpf_cnpj-form-doador" id="cpf-form" class="form-control"
+													value="#{doadorBean.doador.cpf_cnpj}"
+													mask="#{doadorBean.doador.tipoPessoa.mascara}"
+													label="CPF ou CNPJ" required="true">
+													
+										</p:inputMask>
+									</h:panelGroup>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+							 <div class="col-md-3 col-sm-3">
+							       <div class="form-group">
+									 <label class="control-label" for="telefone-form"> 
+										<font color="red">*</font>Telefone:</label> 
+										<input type="text" name="telefone" id="telefone-form" class="form-control"  jsf:value="#{doadorBean.doador.telefone}"
+										pattern="\(\d{2}\) \d{4,5}-\d{4}$" jsf:label="Telefone" required="true">
+											<f:validateRequired />
+										</input>
+									<div class="invalid-feedback"> Telefone inválido.</div>
+								</div> 
+							</div>
+							
+						</div>
+						
+						<div class="row">
+							<div class="col-md-4 col-sm-4">
+								<div class="form-group">
+									<label class="control-label" for="endereco-form-doador"> 
+									<font color="red">*</font>Endereço:
+									</label> 
+										<input type="text" name="endereco-form-doador" id="endereco-form-doador" class="form-control" jsf:value="#{doadorBean.doador.endereco}"
+										jsf:label="Endereço" required="true">
+											<f:validateRequired />
+										</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="cidade-form-doador"> 
+									<font color="red">*</font>Cidade:</label> 
+									<input type="text" name="cidade-form-doador" id="cidade-form-doador" class="form-control" jsf:value="#{doadorBean.doador.cidade}"
+									jsf:label="Cidade" required="true">
+										<f:validateRequired />
+									</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+							<div class="col-md-2 col-sm-2">
+								<div class="form-group">
+									<label class="control-label" for="estado-form-doador"> 
+									<font color="red">*</font>Estado:</label> 
+									<input type="text" name="estado-form-doador" id="estado-form-doador" class="form-control" jsf:value="#{doadorBean.doador.estado}"
+									jsf:label="Estado" required="true">
+										<f:validateRequired />
+									</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="cep-form-doador"> 
+									<font color="red">*</font>CEP:</label> 
+									<input type="text" name="cep-form-doador" id="cep-form" class="form-control" jsf:value="#{doadorBean.doador.cep}"
+									jsf:label="CEP" required="true">
+										<f:validateRequired />
+									</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+
+				<div class="card-footer">
+					<input type="submit" class="btn btn-primary" jsf:action="#{doadorBean.adicionar()}"  value="Cadastrar" />
+				</div>
+			</div>
+		 </form>
+	
+	 
+	</ui:define>
+	
+</ui:composition>
+
+</html>

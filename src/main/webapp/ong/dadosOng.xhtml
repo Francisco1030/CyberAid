@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" lang="pt-br">
+
+<ui:composition template="../layout.xhtml">
+	<ui:define name="conteudo">
+
+		<h:messages id="msgs" infoClass="alert alert-primary" warnClass="alert alert-warning"
+				errorClass="alert alert-danger" fatalClass="alert alert-danger" />
+		
+		<!-- <f:metadata>
+			<f:viewParam name="id" value="#{ongBean}" />
+			
+		</f:metadata>-->
+		
+		<form jsf:id="form" id="needs-validation" novalidate="true">
+		
+		<div class="box-body-default">
+				<div class="card">
+					<h5 class="card-header text-capitalize">Cadastro Ong</h5>
+					<div class="card-body">
+					
+						<div class="row">
+							<div class="col-md-6 col-sm-6">
+								<div class="form-group">
+									<label class="control-label" for="nome-form-ong"> 
+									<font color="red">*</font>Nome:
+									</label> 
+										<input type="text" name="nome-form-ong" jsf:value="#{ongBean.ong.nome}" 
+												id="nome-form-ong" class="form-control" jsf:label="Nome" required="true">
+											<f:validateRequired />
+										</input>
+										<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+							<div class="col-md-6 col-sm-6">
+								<div class="form-group">
+									<label class="control-label" for="email-form-ong"> 
+									<font color="red">*</font>E-mail:</label> 
+									<input type="email" name="email-form-ong" id="email-form-ong" class="form-control" jsf:value="#{ongBean.ong.email}"
+										pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" jsf:label="E-mail" required="true">
+								    	<f:validateRequired />
+								    </input>
+									<div class="invalid-feedback"> E-mail inválido.</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="usuario-form-ong"> 
+									<font color="red">*</font>Usuário:
+									</label> 
+										<input type="text" name="usuario-form-ong" id="usuario-form-ong" class="form-control" jsf:value="#{ongBean.ong.usuario}"
+										jsf:label="Usuário" required="true">
+											<f:validateRequired />
+										</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+						<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="senha-form-ong"> 
+									<font color="red">*</font>Senha:</label> 
+									<input type="password" name="senha-form-ong" id="senha-form-ong" class="form-control" jsf:value="#{ongBean.ong.senha}"
+									jsf:label="Senha" required="true">
+										<f:validateRequired />
+									</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div> 
+							
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="cnpj-form-ong"> 
+									<font color="red">*</font>CNPJ:</label> 
+								<input type="text" name="cnpj-form-ong" id="cnpj-form" class="form-control" jsf:value="#{ongBean.ong.cnpj}"
+									jsf:label="CNPJ" required="true">
+										<f:validateRequired />
+								</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+							 <div class="col-md-3 col-sm-3">
+							       <div class="form-group">
+									 <label class="control-label" for="telefone-form"> 
+										<font color="red">*</font>Telefone:</label> 
+										<input type="text" name="telefone" id="telefone-form" class="form-control"  jsf:value="#{ongBean.ong.telefone}"
+										pattern="\(\d{2}\) \d{4,5}-\d{4}$" jsf:label="Telefone" required="true">
+											<f:validateRequired />
+										</input>
+									<div class="invalid-feedback"> Telefone inválido.</div>
+								</div> 
+							</div>
+							
+						</div>
+						
+												<div class="row">
+							<div class="col-md-4 col-sm-4">
+								<div class="form-group">
+									<label class="control-label" for="endereco-form-ong"> 
+									<font color="red">*</font>Endereço:
+									</label> 
+										<input type="text" name="endereco-form-ong" id="endereco-form-ong" class="form-control" jsf:value="#{ongBean.ong.endereco}"
+										jsf:label="Endereço" required="true">
+											<f:validateRequired />
+										</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="cidade-form-ong"> 
+									<font color="red">*</font>Cidade:</label> 
+									<input type="text" name="cidade-form-ong" id="cidade-form-ong" class="form-control" jsf:value="#{ongBean.ong.cidade}"
+									jsf:label="Cidade" required="true">
+										<f:validateRequired />
+									</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+							<div class="col-md-2 col-sm-2">
+								<div class="form-group">
+									<label class="control-label" for="estado-form-ong"> 
+									<font color="red">*</font>Estado:</label> 
+									<input type="text" name="estado-form-ong" id="estado-form-ong" class="form-control" jsf:value="#{ongBean.ong.estado}"
+									jsf:label="Estado" required="true">
+										<f:validateRequired />
+									</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+							
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="cep-form-ong"> 
+									<font color="red">*</font>CEP:</label> 
+									<input type="text" name="cep-form-ong" id="cep-form" class="form-control" jsf:value="#{ongBean.ong.cep}"
+									jsf:label="CEP" required="true">
+										<f:validateRequired />
+									</input>
+									<div class="invalid-feedback">Preencha este campo.</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+
+				<div class="card-footer">
+					<input type="submit" class="btn bg-botao color" jsf:action="#{ongBean.adicionar()}"  value="Cadastrar" />
+				</div>
+			</div>
+		 </form>
+	
+	 
+	</ui:define>
+	
+</ui:composition>
+
+</html>

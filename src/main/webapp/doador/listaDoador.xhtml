@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	lang="pt-br">
+
+<ui:composition template="../imports/layout.xhtml">
+	<ui:define name="conteudo">
+
+		<h:messages id="msgs" infoClass="alert alert-primary"
+			warnClass="alert alert-warning" errorClass="alert alert-danger"
+			fatalClass="alert alert-danger" />
+
+		<form jsf:id="form" id="needs-validation" novalidate="true">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Nome</th>
+						<th scope="col">CPF/CNPJ</th>
+						<th scope="col">E-mail</th>
+						<th scope="col">Usuário</th>	
+						<th scope="col">Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+						<ui:repeat var="d" value="#{doadorBean.doadores}">
+							<tr>
+								<td>#{d.id}</td>
+								<td>#{d.nome}</td>
+								<td>#{d.cpf_cnpj}</td>
+								<td>#{d.email}</td>
+								<td>#{d.usuario}</td>
+								<td>
+									<input type="button" value="Editar" class="btn btn-primary" jsf:outcome="dadosDoador?id=#{d.id}" />&#160;
+									<input type="submit" value="Excluir" class="btn btn-danger" onclick="return confirm('Deseja excluir o doador #{d.id}?');" jsf:action="#{doadorBean.excluir(d)}" />
+								</td>
+							</tr>
+						</ui:repeat>
+				</tbody>
+			</table>
+		</form>
+
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
