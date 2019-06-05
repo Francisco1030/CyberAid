@@ -9,7 +9,7 @@ import br.com.cyberair.utils.RegraNegocioException;
 
 public class DoadorBO {
 
-	DoadorDao dao = new DoadorDao();
+	private DoadorDao dao = new DoadorDao();
 
 	public void adicionar(Doador doador) throws RegraNegocioException {
 		dao.adicionarDoador(doador);
@@ -24,6 +24,13 @@ public class DoadorBO {
 			throw new RegraNegocioException("O doador é nulo!");
 		}
 		dao.removerDoador(doador);
+	}
+	
+	public Doador pesquisaId(Integer id) throws RegraNegocioException{
+		if(id == null) {
+			throw new RegraNegocioException("O ID é nulo!");
+		}
+		return dao.buscarPessoaPorId(id);
 	}
 
 }

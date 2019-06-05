@@ -9,7 +9,7 @@ import br.com.cyberair.dao.OngDao;
 
 public class OngBO {
 
-	OngDao dao = new OngDao();
+	private OngDao dao = new OngDao();
 	
 	public void adicionar(Ong ong) throws RegraNegocioException{
 		dao.adicionarOng(ong);

@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:jsf="http://xmlns.jcp.org/jsf" lang="pt-br">
 
-<ui:composition template="../layout.xhtml">
+<ui:composition template="../imports/layout.xhtml">
 	<ui:define name="conteudo">
 
 		<h:messages id="msgs" infoClass="alert alert-primary" warnClass="alert alert-warning"
@@ -80,9 +80,9 @@
 							
 							<div class="col-md-3 col-sm-3">
 								<div class="form-group">
-									<label class="control-label" for="cnpj-form-ong"> 
+									<label class="control-label" for="cnpj-form"> 
 									<font color="red">*</font>CNPJ:</label> 
-								<input type="text" name="cnpj-form-ong" id="cnpj-form" class="form-control" jsf:value="#{ongBean.ong.cnpj}"
+								<input type="text" name="cnpj-form" id="cnpj-form" class="form-control" jsf:value="#{ongBean.ong.cnpj}"
 									jsf:label="CNPJ" required="true">
 										<f:validateRequired />
 								</input>

@@ -9,7 +9,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.cyberair.bo.OngBO;
-import br.com.cyberair.model.Doador;
 import br.com.cyberair.model.Ong;
 import br.com.cyberair.utils.RegraNegocioException;
 
