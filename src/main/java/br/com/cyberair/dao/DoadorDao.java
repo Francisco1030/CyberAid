@@ -43,16 +43,13 @@ public class DoadorDao {
 		
 	}
 
-	@SuppressWarnings("unchecked") // suprimir os alertas
+	@SuppressWarnings("unchecked")
 	public List<Doador> listarDoadores() {
 		
 		EntityManager em = new JpaUtil().getEntityManager();
 		em.getTransaction().begin();
 		Query consulta = em.createQuery("select doador from Doador doador ");
 		List<Doador> doadores = consulta.getResultList();
-//		for (Doador doador : doadores) {
-//			System.out.println(doador.getId() + " - " + doador.getNome());
-//		}
 		em.getTransaction().commit();
 		em.close();
 
@@ -61,14 +58,12 @@ public class DoadorDao {
 	}
 
 	public void editarDoador(Doador pn) {
+		
 		EntityManager em = new JpaUtil().getEntityManager();
-
 		em.getTransaction().begin();
-
 		em.merge(pn);
-
 		em.getTransaction().commit();
-
 		em.close();
+		
 	}
 }

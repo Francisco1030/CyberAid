@@ -27,8 +27,6 @@ public class DoadorBean implements Serializable {
 
 	private List<Doador> doadores;
 	
-	private String id;
-	
 	@PostConstruct
 	public void inti() {
 		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
@@ -58,15 +56,20 @@ public class DoadorBean implements Serializable {
 		}
 		return "/doador/dadosDoador";
 	}
-
-	public Doador pesquisaId(Integer id) {
+	
+	public String atualizar() {
 		try {
-			return bo.pesquisaId(id);
-		}catch (RegraNegocioException e) {
+			bo.atualizar(doador);
+			FacesContext.getCurrentInstance().addMessage("msgs", new FacesMessage("Doador atualizado com sucesso"));
+			doador = new Doador();
+		} catch (RegraNegocioException e) {
 			FacesContext.getCurrentInstance().addMessage("msgs",
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 			return null;
+		} finally {
+			FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		}
+		return "/doador/listaDoador.xhtml?faces-redirect=true";
 	}
 
 	public String excluir(Doador doador) {
@@ -95,14 +98,6 @@ public class DoadorBean implements Serializable {
 			doadores = bo.listaDoadores();
 		}
 		return doadores;
-	}
-	
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 }

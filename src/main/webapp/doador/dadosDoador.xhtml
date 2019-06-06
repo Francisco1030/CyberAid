@@ -19,7 +19,8 @@
 			
 			<div class="box-body-default">
 				<div class="card">
-					<h5 class="card-header text-capitalize">Cadastro Doador</h5>
+					<h5 class="card-header text-capitalize">#{doadorBean.doador.id == null ? 'Cadastrar' :
+				'Atualizar'} Doador</h5>
 					<div class="card-body">
 					
 						<div class="row">
@@ -166,7 +167,8 @@
 				</div>
 
 				<div class="card-footer">
-					<input type="submit" class="btn btn-primary" jsf:action="#{doadorBean.adicionar()}"  value="Cadastrar" />
+					<input type="submit" class="btn btn-primary" jsf:action="#{doadorBean.adicionar()}" jsf:rendered="#{doadorBean.doador.id == null}"  value="Cadastrar" />
+					<input type="submit" class="btn btn-primary" jsf:action="#{doadorBean.atualizar()}" jsf:rendered="#{doadorBean.doador.id != null}"  value="Atualizar" /> 
 				</div>
 			</div>
 		 </form>

@@ -18,7 +18,8 @@
 	
 			<div class="box-body-default">
 				<div class="card">
-					<h5 class="card-header text-capitalize">Cadastro Doação</h5>
+					<h5 class="card-header text-capitalize">#{doacaoBean.doacao.id == null ? 'Cadastrar' :
+							'Atualizar'} Doação</h5>
 					<div class="card-body">
 					
 						<div class="row">
@@ -39,50 +40,45 @@
 								<div class="col-md-5 col-sm-5">
 	                                    <div class="form-group">
 	                                        <label class="control-label has-feedback" for="doador-form-doacao"><font color="red">*</font>Doador:</label>
-	                                        
-	                                        
+	                                        <!-- 
 	                                        <h:selectOneMenu id="doador-form-doacao"  value="#{doacaoBean.doacao.doador}" 
 	                                        	name="doador-form-doacao"  styleClass="form-control"
 	                                        	converter="doadorConverter" >
-	                                        		<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+	                                        		<f:selectItem itemLabel="Selecione" noSelectionOption="false"/>
 													<f:selectItems value="#{doacaoBean.doadores}" var="d" itemLabel="#{d.nome}" itemValue="#{d}" />
-	                                        </h:selectOneMenu>
+													<f:validateRequired />
+	                                        </h:selectOneMenu>-->
 	                                        
-	                                        <!-- <select id="doador-form-doacao" jsf:value="#{doacaoBean.doacao.doador}" 
-	                                        	name="doador-form-doacao" size="0" class="form-control">
-	                                               <f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+	                                        <select id="doador-form-doacao" jsf:label="Doador" jsf:value="#{doacaoBean.doacao.doador}" 
+	                                        	name="doador-form-doacao" size="0" class="form-control" required="true">
+	                                               <f:selectItem itemLabel="Selecione" noSelectionOption="false"/>
 													<f:selectItems value="#{doacaoBean.doadores}" var="d" itemLabel="#{d.nome}" itemValue="#{d}" />
 													<f:validateRequired />
 													<f:converter converterId="doadorConverter"/>
-	                                            </select> -->
+	                                            </select> 
 	                                     <div class="invalid-feedback">Escolha uma opção. </div>
 									</div>
 							</div>    
 							
 							<div class="col-md-5 col-sm-5">
-	                                    
-	                                    
-	                                    
 	                               <div class="form-group">
 	                                        <label class="control-label" for="ong-form-doacao"><font color="red">*</font>ONG:</label>
-	                                        	<select id="ong-form-doacao" jsf:value="#{doacaoBean.doacao.ong}" name="ong-form-doacao" size="0" class="form-control">
-	                                               <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-													<f:selectItems value="#{doacaoBean.ogns}" var="o" itemLabel="#{o.nome}" itemValue="#{oz}" />
+	                                        	<select id="ong-form-doacao" jsf:value="#{doacaoBean.doacao.ong}" jsf:label="ONG" name="ong-form-doacao" size="0" class="form-control" required="true">
+	                                               <f:selectItem itemLabel="Selecione" noSelectionOption="false" />
+													<f:selectItems value="#{doacaoBean.ogns}" var="o" itemLabel="#{o.nome}" itemValue="#{o}" />
 													<f:validateRequired />
 													<f:converter converterId="ongConverter"></f:converter>
 	                                            </select>
 	                                     <div class="invalid-feedback">Escolha uma opção. </div>
-									</div>
-									
-									
-									
+									</div>			
 									
 							</div>
 						</div>
 				</div>
 				</div>
 				<div class="card-footer">
-					<input type="submit" class="btn btn-primary" jsf:action="#{doacaoBean.adicionar()}"  value="Cadastrar" />
+					<input type="submit" class="btn btn-primary" jsf:action="#{doacaoBean.adicionar()}" jsf:rendered="#{doacaoBean.doacao.id == null}"  value="Cadastrar" />
+					<input type="submit" class="btn btn-primary" jsf:action="#{doacaoBean.atualizar()}" jsf:rendered="#{doacaoBean.doacao.id != null}"  value="Atualizar" />
 				</div>
 			</div>
 		 </form>

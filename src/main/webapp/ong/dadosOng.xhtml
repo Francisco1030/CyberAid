@@ -12,17 +12,14 @@
 
 		<h:messages id="msgs" infoClass="alert alert-primary" warnClass="alert alert-warning"
 				errorClass="alert alert-danger" fatalClass="alert alert-danger" />
-		
-		<!-- <f:metadata>
-			<f:viewParam name="id" value="#{ongBean}" />
-			
-		</f:metadata>-->
+	
 		
 		<form jsf:id="form" id="needs-validation" novalidate="true">
 		
 		<div class="box-body-default">
 				<div class="card">
-					<h5 class="card-header text-capitalize">Cadastro Ong</h5>
+					<h5 class="card-header text-capitalize">#{ongBean.ong.id == null ? 'Cadastrar' :
+							'Atualizar'} Ong</h5>
 					<div class="card-body">
 					
 						<div class="row">
@@ -159,7 +156,8 @@
 				</div>
 
 				<div class="card-footer">
-					<input type="submit" class="btn bg-botao color" jsf:action="#{ongBean.adicionar()}"  value="Cadastrar" />
+					<input type="submit" class="btn btn-primary" jsf:action="#{ongBean.adicionar()}" jsf:rendered="#{ongBean.ong.id == null}"  value="Cadastrar" />
+					<input type="submit" class="btn btn-primary" jsf:action="#{ongBean.atualizar()}" jsf:rendered="#{ongBean.ong.id != null}"  value="Atualizar" />
 				</div>
 			</div>
 		 </form>

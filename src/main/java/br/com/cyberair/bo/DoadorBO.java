@@ -15,6 +15,10 @@ public class DoadorBO {
 		dao.adicionarDoador(doador);
 	}
 	
+	public void atualizar(Doador doador) throws RegraNegocioException {
+		dao.editarDoador(doador);
+	}
+	
 	public List<Doador> listaDoadores(){
 		return dao.listarDoadores();
 	}

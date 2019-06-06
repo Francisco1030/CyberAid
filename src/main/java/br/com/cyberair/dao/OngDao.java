@@ -58,19 +58,14 @@ public class OngDao {
 	
 	
 	public void editarOng(Ong pn) {
+		
 		EntityManager em = new JpaUtil().getEntityManager();
-		
 		em.getTransaction().begin();
-		
 		em.merge(pn);	
-		
-		em.getTransaction().commit();
-		
+		em.getTransaction().commit();	
 		em.close();
+		
 	}
-	
-	                                       //JPQL 
-	
 	
 	@SuppressWarnings("unchecked") // suprimir os alertas
 	public List<Ong> listarOngsOrdenadas(){

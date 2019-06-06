@@ -22,8 +22,26 @@ public class DoacaoBO {
 		if(doacao.getDoador().getId().equals("") || doacao.getOng().getId().equals("")) {
 			throw new RegraNegocioException("Objetos não podem ser nulos!");
 		}
-		//Double.parseDouble(doacao.getValor());
 		daoDoacao.adicionarDoacao(doacao);
+	}
+	
+	public void atualizar(Doacao doacao) throws RegraNegocioException {
+		daoDoacao.editarDoacao(doacao);
+	}
+	
+	public void excluir(Doacao doacao) throws RegraNegocioException{
+		daoDoacao.removerDoacao(doacao);	
+	}
+	
+	public Doacao pesquisaId(Integer id) throws RegraNegocioException{
+		if(id == null) {
+			throw new RegraNegocioException("O ID é nulo!");
+		}
+		return daoDoacao.buscarDoacaoPorId(id);
+	}
+	
+	public List<Doacao> listaDoacoes(){
+		return daoDoacao.listarDoacoes();
 	}
 	
 	public List<Doador> listaDoadores(){

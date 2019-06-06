@@ -3,10 +3,12 @@ package br.com.cyberair.bean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import br.com.cyberair.bo.OngBO;
 import br.com.cyberair.model.Ong;
@@ -23,6 +25,19 @@ public class OngBean implements Serializable {
 	private OngBO bo = new OngBO();
 
 	private List<Ong> ongs;
+	
+	@PostConstruct
+	public void inti() {
+		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		String indice = req.getParameter("id");
+		if (indice != null && String.valueOf(indice).matches("\\d+"))
+			try {
+				ong = bo.pesquisaId(Integer.valueOf(indice));
+			} catch (NumberFormatException | RegraNegocioException e) {
+				e.printStackTrace();
+			}
+	}
 
 	public String adicionar() {
 		try {
@@ -35,6 +50,21 @@ public class OngBean implements Serializable {
 			return null;
 		}
 		return "/ong/dadosOng";
+	}
+	
+	public String atualizar() {
+		try {
+			bo.atualizar(ong);
+			FacesContext.getCurrentInstance().addMessage("msgs", new FacesMessage("Ong atualizada com sucesso"));
+			ong = new Ong();
+		} catch (RegraNegocioException e) {
+			FacesContext.getCurrentInstance().addMessage("msgs",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+			return null;
+		} finally {
+			FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+		}
+		return "/ong/listaOng.xhtml?faces-redirect=true";
 	}
 
 	public String excluir(Ong o) {

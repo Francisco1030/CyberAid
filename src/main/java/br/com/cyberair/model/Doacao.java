@@ -18,12 +18,9 @@ public class Doacao {
 	private Integer id;
 	@Column(nullable = false)
 	private Double valor;
-
-// COMO FAZER COM QUE ESSES ATRIBUTOS NAO POSSAM RECEBER VALORES NULOS  
-
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	private Ong Ong;
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	private Doador Doador;
 
 	public Doador getDoador() {
